@@ -1,49 +1,56 @@
-<!doctype html>
-<html lang = "en">
-    <head>
-        <meta charset="utf-8">
-        <meta name = "viewport" content="width=device-width, initial-scale=1">
-        <title>SIA | Login</title>
-        <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    </head>
- <body class="bg-secondary">
- <div class="container">
+<?php
+ $query = "SELECT * FROM tbl_pengguna WHERE username='$_SESSION[username]'";
+ $exec = mysqli_query($koneksi, $query);
+ $data = mysqli_fetch_array($exec);
+ ?>
+ <div class="card mb-3">
+     <div class="card-body">
+ <form action="modul/profile/aksi_profile.php" method="post">
  <div class="row">
- <div class="col-md-4 m-auto mt-5 shadow p-3 bg-white">
- <form action="authentication.php" method="post">
- <h3 class="text-center">Login System</h3>
- <hr>
- <div class="input-group mb-3">
- <span class="input-group-text">
- <i class="bi bi-person-fill"></i>
- </span>
-<input type="text" class="form-control" name="username"
-placeholder="username">
+ <div class="mb-3 col-md-4">
+ <label for="username" class="form-label">Username</label>
+ <input type="text" class="form-control" name="username" value="<?=
+$data['username'] ?>" readonly>
  </div>
- <div class="input-group mb-3">
- <span class="input-group-text">
- <i class="bi bi-key-fill"></i>
- </span>
- <input type="password" class="form-control" name="password"
-placeholder="password">
+ <div class="mb-3 col-md-4">
+ <label for="nama_lengkap" class="form-label">Nama lengkap</label>
+ <input type="text" class="form-control" name="nama_lengkap"
+value="<?= $data['nama_lengkap'] ?>">
  </div>
- <div class="mb-3 d-grid">
- <button type="submit" class="btn btn-primary">Login</button>
+ <div class="mb-3 col-md-4">
+ <label for="email" class="form-label">Email</label>
+ <input type="email" class="form-control" name="email" value="<?=
+$data['email'] ?>">
+ </div>
+ </div>
+ <div class="row">
+ <div class="mb-3 col-md-4">
+ <label for="password" class="form-label">Password</label>
+ <input type="password" class="form-control" name="password">
+ </div>
+ <div class="mb-3 col-md-4">
+ <label for="password_baru" class="form-label">Password
+baru</label>
+ <input type="password" class="form-control" name="password_baru">
+ </div>
+ <div class="mb-3 col-md-4">
+ <label for="password_ulang" class="form-label">Ulangi
+password</label>
+ <input type="password" class="form-control" name="password_ulang">
+ </div>
+ </div>
+ <hr class="text-secondary">
+ <div class="d-flex">
+ <span class="me-auto text-gray">
+ <?php
+ if(isset($_SESSION['pesan'])){
+ echo $_SESSION['pesan'];
+ unset($_SESSION['pesan']);
+ }
+ ?>
+ </span>
+ <button type="submit" name="submit" class="btn btnprimary">Perbaharui</button>
  </div>
  </form>
- <div class="text-center">
- <small>Aplikasi Sistem Informasi Akuntansi |</small>
  </div>
  </div>
- </div>
- </div>
- <script
-src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"crossorigin="anonymous"></script>
- </body>
- </html>
-  <body>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  </body>
-</html>
